@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PolyU Portal · 2026-27 Sem1</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- ======================= LEFT: SIDEBAR ======================= -->
+  <aside class="sidebar" id="sidebar">
+    <div class="side-head">
+      <div class="brand" id="brandHome" title="回到主页面" role="button" tabindex="0">
+        <span class="logo-chip sm"><img class="logo-img brand-logo" src="main-logo-1x.png" alt=""></span>
+        <div class="brand-mark">P</div>
+        <div class="brand-text">
+          <strong>PolyU Portal</strong>
+          <span>2026-27 Semester 1</span>
+        </div>
+      </div>
+      <button class="icon-btn" id="collapseBtn" title="收起侧栏 ( [ )" aria-label="收起侧栏">
+        <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+    </div>
+
+    <div class="side-search">
+      <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="search" type="text" placeholder="搜索课程 / 网址…  ( / )" autocomplete="off" spellcheck="false">
+      <button class="icon-btn tiny" id="searchClear" title="清除" hidden>
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <nav class="nav" id="nav" aria-label="站点导航"></nav>
+
+    <div class="side-foot">
+      <label class="switch-row" title="打开链接后自动收起侧栏，方便专注右侧网页">
+        <input type="checkbox" id="autoCollapse" checked>
+        <span class="switch"></span>
+        <span class="switch-label">打开后自动收起</span>
+      </label>
+      <button class="ghost-btn" id="themeBtn" title="切换深色 / 浅色">
+        <svg class="ico-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.6M12 19.4V22M2 12h2.6M19.4 12H22M4.9 4.9l1.9 1.9M17.2 17.2l1.9 1.9M19.1 4.9l-1.9 1.9M6.8 17.2l-1.9 1.9"/></svg>
+        <span id="themeLabel">深色模式</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ======================= RESIZER ======================= -->
+  <div class="resizer" id="resizer" title="拖动调整宽度"></div>
+
+  <!-- ======================= RIGHT: VIEWER ======================= -->
+  <main class="main">
+
+    <header class="topbar">
+      <button class="icon-btn rail-toggle" id="railToggle" title="展开侧栏 ( [ )" aria-label="展开侧栏">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+
+      <div class="nav-arrows">
+        <button class="icon-btn" id="homeBtn" title="回到主页面 ( H )">
+          <svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5"/><path d="M6 9.8V19a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V9.8"/><path d="M10 20v-5h4v5"/></svg>
+        </button>
+        <button class="icon-btn" id="backBtn" title="后退" disabled>
+          <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button class="icon-btn" id="fwdBtn" title="前进" disabled>
+          <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+
+      <div class="page-title" id="pageTitle">
+        <span class="dot" id="titleDot"></span>
+        <span class="t-code" id="titleCode">首页</span>
+        <span class="t-name" id="titleName">全部链接总览</span>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="settingsBtn" title="设置：增删分组与小项目">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 8.9 19a1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 5 8.9a1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9.6a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9v.1a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        </button>
+        <button class="mode-btn" id="modeBtn" hidden>
+          <span id="modeLabel">新标签</span>
+        </button>
+        <button class="icon-btn" id="reloadBtn" title="重新加载" disabled>
+          <svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-1.9 6.1"/><path d="M20 4.5V11h-6"/></svg>
+        </button>
+        <button class="icon-btn" id="copyBtn" title="复制当前网址" disabled>
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2.4"/><path d="M6.5 15H5.6A1.6 1.6 0 0 1 4 13.4V5.6A1.6 1.6 0 0 1 5.6 4h7.8A1.6 1.6 0 0 1 15 5.6v.9"/></svg>
+        </button>
+        <button class="icon-btn" id="fullBtn" title="全屏专注 ( F )">
+          <svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 15v5h-5M15 4h5v5M9 20H4v-5"/></svg>
+        </button>
+        <a class="primary-btn" id="openBtn" href="#" target="_blank" rel="noopener" hidden>
+          <span id="openBtnLabel">新标签打开</span>
+          <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v4.4A1.6 1.6 0 0 1 16.4 20H5.6A1.6 1.6 0 0 1 4 18.4V7.6A1.6 1.6 0 0 1 5.6 6H10"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <section class="stage" id="stage">
+      <!-- ============ 主页面（进入 portal 先看到这一页） ============ -->
+      <div class="home" id="home">
+        <div class="home-inner">
+
+          <header class="hero">
+            <div class="hero-main">
+              <span class="logo-chip lg"><img class="logo-img hero-logo" src="main-logo-1x.png" alt=""></span>
+              <div class="hero-mark">P</div>
+              <div class="hero-text">
+                <h1 class="hero-title">PolyU Portal</h1>
+                <div class="hero-meta">
+                  <span class="pill-sem">2026-27 Semester 1</span>
+                  <span class="pill-unlock" id="unlockPill" hidden></span>
+                  <span class="hero-greet" id="homeGreet">你好</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-clock">
+              <div class="clock-time" id="clockTime">--:--:--</div>
+              <div class="clock-date" id="clockDate">加载中…</div>
+            </div>
+          </header>
+
+          <section class="stats" id="homeStats"></section>
+
+          <section class="block" id="homeRecent" hidden>
+            <h2 class="sec-title">
+              <span>最近访问</span>
+              <button class="sec-action" id="clearRecent">清空</button>
+            </h2>
+            <div class="chips" id="recentChips"></div>
+          </section>
+
+          <section class="block">
+            <h2 class="sec-title"><span>全部链接</span><span class="sec-hint">点卡片里的课程代码即可打开</span></h2>
+            <div class="home-grid" id="homeGrid"></div>
+          </section>
+
+          <section class="tips">
+            <div class="tip"><kbd>[</kbd><span>收起 / 展开侧栏，右侧全宽专注</span></div>
+            <div class="tip"><kbd>/</kbd><span>搜索课程代码或网址</span></div>
+            <div class="tip"><kbd>F</kbd><span>专注模式，隐藏顶栏与状态栏</span></div>
+            <div class="tip"><kbd>H</kbd><span>随时回到这个主页面</span></div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- embedded viewer -->
+      <div class="frame-wrap" id="frameWrap" hidden>
+        <iframe id="frame" title="内容窗口" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="loading-bar" id="loadingBar"></div>
+
+        <div class="tab-only" id="tabOnly" hidden>
+          <div class="to-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v4.4A1.6 1.6 0 0 1 16.4 20H5.6A1.6 1.6 0 0 1 4 18.4V7.6A1.6 1.6 0 0 1 5.6 6H10"/></svg>
+          </div>
+          <h3 id="toTitle">这个站点已设为「新标签打开」</h3>
+          <p id="toSub">它会话登录态在 iframe 里无法保持，所以直接开新标签更省事。</p>
+          <div class="to-actions">
+            <a class="primary-btn" id="toOpen" href="#" target="_blank" rel="noopener">
+              <span>再打开一次</span>
+              <svg viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v4.4A1.6 1.6 0 0 1 16.4 20H5.6A1.6 1.6 0 0 1 4 18.4V7.6A1.6 1.6 0 0 1 5.6 6H10"/></svg>
+            </a>
+            <button class="ghost-btn" id="toEmbed">仍在此处嵌入</button>
+          </div>
+        </div>
+
+        <div class="blocked-hint" id="blockedHint" hidden>
+          <div class="bh-text">
+            <strong>右侧空白 / 登录不了？</strong>
+            <span id="bhReason">多数校内站点（Canvas、Learn@PolyU、eStudent…）设置了 <code>X-Frame-Options</code>，浏览器禁止被嵌入，且第三方 Cookie 会被拦截。</span>
+          </div>
+          <button class="ghost-btn light" id="bhOpen">新标签打开</button>
+          <button class="ghost-btn light" id="bhRemember">以后都新标签打开</button>
+          <button class="icon-btn" id="bhClose" title="关闭提示">
+            <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="statusbar">
+      <span class="sig"><span id="statusText">就绪</span> · 共 <b id="linkCount">0</b> 个链接</span>
+      <span class="sig url" id="statusUrl"></span>
+    </footer>
+  </main>
+</div>
+
+<!-- ======================= 设置：分组与小项目 ======================= -->
+<div class="modal" id="settingsModal" hidden>
+  <div class="modal-backdrop"></div>
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="setTitle">
+    <header class="modal-head">
+      <h2 id="setTitle">设置 · 分组与链接</h2>
+      <div class="modal-head-actions">
+        <button class="ghost-btn" id="navReset" title="恢复成出厂的 18 个链接">恢复默认</button>
+        <button class="icon-btn" id="setClose" title="关闭 (Esc)">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="modal-body">
+      <div class="set-toolbar">
+        <button class="primary-btn" id="addGroupBtn"><span>＋ 新建分组</span></button>
+        <button class="primary-btn" id="addItemBtn"><span>＋ 新建小项目</span></button>
+        <span class="set-hint">改动即时生效并存到本机浏览器</span>
+      </div>
+
+      <form class="set-form" id="setForm" hidden onsubmit="return false">
+        <h3 id="formTitle">新建小项目</h3>
+        <div class="field" id="rowGroup">
+          <label for="fGroup">所属分组</label>
+          <select id="fGroup"></select>
+        </div>
+        <div class="field">
+          <label for="fName">名称</label>
+          <input id="fName" type="text" placeholder="例：AMA3640 / 教务处" autocomplete="off">
+        </div>
+        <div class="field" id="rowUrl">
+          <label for="fUrl">网址</label>
+          <input id="fUrl" type="text" placeholder="例：canvas.polyu.edu.hk/courses/4429" autocomplete="off" spellcheck="false">
+          <span class="field-hint">不写协议会自动补 https://，只支持 http / https</span>
+        </div>
+        <div class="field" id="rowSub">
+          <label for="fSub">说明（可选）</label>
+          <input id="fSub" type="text" placeholder="例：Canvas · 课程页（鼠标悬停时显示）" autocomplete="off">
+        </div>
+        <div class="field" id="rowMode">
+          <label>打开方式</label>
+          <div class="radios">
+            <label class="radio"><input type="radio" name="fMode" value="auto" checked><span>自动</span>
+              <em>装了扩展就在右侧打开，没装则用新标签</em></label>
+            <label class="radio"><input type="radio" name="fMode" value="embed"><span>右侧嵌入</span>
+              <em>强制在这里的右侧面板打开</em></label>
+            <label class="radio"><input type="radio" name="fMode" value="tab"><span>新标签</span>
+              <em>直接开新标签，不占用右侧面板</em></label>
+          </div>
+        </div>
+        <div class="form-error" id="formError" hidden></div>
+        <div class="form-actions">
+          <button class="primary-btn" id="formSave" type="button"><span>保存</span></button>
+          <button class="ghost-btn" id="formCancel" type="button">取消</button>
+        </div>
+      </form>
+
+      <div class="set-confirm" id="setConfirm" hidden></div>
+      <div class="set-list" id="setList"></div>
+      <div class="set-empty" id="setEmpty" hidden>还没有任何分组，点上面的「＋ 新建分组」开始。</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="app.js"></script>
+</body>
+</html>
