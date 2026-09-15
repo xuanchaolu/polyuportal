@@ -1,0 +1,74 @@
+{
+  "manifest_version": 3,
+  "name": "Portal Frame Unlocker (本地内嵌解锁)",
+  "version": "2.1.0",
+  "description": "让本地 portal 能把校内站点嵌进右侧面板：对 iframe 请求摘掉 X-Frame-Options/CSP，并把 iframe 里收到的会话 cookie 放宽为 SameSite=None（否则 Blackboard 会报 Browser Cookies Disabled）。顶层浏览不受影响。",
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestWithHostAccess",
+    "cookies",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "*://*.polyu.edu.hk/*",
+    "*://*.ust.hk/*",
+    "*://*.cityu.edu.hk/*",
+    "*://*.cuhk.edu.hk/*",
+    "*://*.hku.hk/*",
+    "*://unimelb-web.t1cloud.com/*",
+    "*://platform.deepseek.com/*",
+    "http://127.0.0.1/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "portal_frame_unlock",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://127.0.0.1/*",
+        "http://localhost/*",
+        "file:///*",
+        "https://polyhk.netlify.app/*",
+        "https://*.netlify.app/*"
+      ],
+      "js": [
+        "mark.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "*://learn.polyu.edu.hk/*",
+        "*://*.blackboard.com/*"
+      ],
+      "js": [
+        "bbfix.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlrsI5NVsc3yX2leh8xM8JDDtRFW+D0igXFbTVYHnQNFqZ4j6jnh54UzqPMYpOna6BBYrwyNQFnXvRMvIAT3mMiIV4MV5m38TL9wUgGdhxLIFbCVqA93za8oJhv5VDxlSNlDSx0qYPydzkyXCmHEVkrYGRy5NMCQ8BnxtmHLU0yr7Uivirdvil8YYactrRcOERW/ejjmbfSvEN1C3BIIlP7Jq0fypA9P2SVmeoEpsv03NP9k80fxZWRfDgV40D1gnnmNtCqvVseoQZx/6xpcub7hrDqsrMvacXbpVXRDSy0JapaG7LorARvDlrahVHyF8kOj3Z3bGyRHcNI557Xr7MwIDAQAB",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "ping.txt"
+      ],
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "file:///*"
+      ]
+    }
+  ]
+}
